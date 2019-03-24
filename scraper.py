@@ -33,7 +33,7 @@ for i in range(len(areas)):
 
     # print(f"Area: {areas[i]}")
     driver.find_elements_by_xpath('//li[@class="select2-results__option"]')[i].click()
-    time.sleep(3)
+    time.sleep(5)
     driver.find_elements_by_xpath(path)[1].click()
     districts = [i.text for i in driver.find_elements_by_xpath('//li[@class="select2-results__option"]')]
     #print(f"Districts under {areas[i]}: ")
@@ -45,7 +45,7 @@ for i in range(len(areas)):
             driver.find_elements_by_xpath(path)[1].click()
 
         driver.find_elements_by_xpath('//li[@class="select2-results__option"]')[j].click()
-        time.sleep(3)
+        time.sleep(5)
         driver.find_elements_by_xpath(path)[2].click()
         estates = [i.text for i in driver.find_elements_by_xpath('//li[@class="select2-results__option"]')]
         #print(f"Estates under {districts[j]}: ")
@@ -58,10 +58,9 @@ for i in range(len(areas)):
 
             print(areas[i] + ', ' + districts[j] + ', ' + estates[k])
 
-
-
 df = pd.DataFrame()
 df["Area"] = areas_li
 df["District"] = districts_li
 df["Estate"] = estates_li
 df.to_csv('hang-seng-data.csv', index=False)
+print(f'Database constructed and saved! There are {df.shape[0]} rows saved')
